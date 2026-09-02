@@ -61,7 +61,7 @@ export function EMGChart({ compact = false }: { compact?: boolean }) {
               </linearGradient>
             </defs>
             <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 6" vertical={false} />
-            <XAxis dataKey="t" tick={false} axisLine={false} height={16} label={undefined} />
+            <XAxis dataKey="t" tick={false} axisLine={false} height={16} />
             <YAxis
               domain={[0, 1]}
               tick={{ fill: "var(--color-muted-foreground)", fontSize: 12 }}
