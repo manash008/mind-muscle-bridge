@@ -10,12 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiModelRouteImport } from './routes/ai-model'
 import { Route as AlertsRouteImport } from './routes/alerts'
+import { Route as CommunicationRouteImport } from './routes/communication'
+import { Route as ControlsRouteImport } from './routes/controls'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DevicesRouteImport } from './routes/devices'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as PatientRouteImport } from './routes/patient'
+import { Route as SettingsRouteImport } from './routes/settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiModelRoute = AiModelRouteImport.update({
+  id: '/ai-model',
+  path: '/ai-model',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AlertsRoute = AlertsRouteImport.update({
@@ -23,40 +35,129 @@ const AlertsRoute = AlertsRouteImport.update({
   path: '/alerts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunicationRoute = CommunicationRouteImport.update({
+  id: '/communication',
+  path: '/communication',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ControlsRoute = ControlsRouteImport.update({
+  id: '/controls',
+  path: '/controls',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DevicesRoute = DevicesRouteImport.update({
+  id: '/devices',
+  path: '/devices',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PatientRoute = PatientRouteImport.update({
+  id: '/patient',
+  path: '/patient',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-model': typeof AiModelRoute
   '/alerts': typeof AlertsRoute
+  '/communication': typeof CommunicationRoute
+  '/controls': typeof ControlsRoute
   '/dashboard': typeof DashboardRoute
+  '/devices': typeof DevicesRoute
+  '/history': typeof HistoryRoute
+  '/patient': typeof PatientRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-model': typeof AiModelRoute
   '/alerts': typeof AlertsRoute
+  '/communication': typeof CommunicationRoute
+  '/controls': typeof ControlsRoute
   '/dashboard': typeof DashboardRoute
+  '/devices': typeof DevicesRoute
+  '/history': typeof HistoryRoute
+  '/patient': typeof PatientRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-model': typeof AiModelRoute
   '/alerts': typeof AlertsRoute
+  '/communication': typeof CommunicationRoute
+  '/controls': typeof ControlsRoute
   '/dashboard': typeof DashboardRoute
+  '/devices': typeof DevicesRoute
+  '/history': typeof HistoryRoute
+  '/patient': typeof PatientRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/alerts' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/ai-model'
+    | '/alerts'
+    | '/communication'
+    | '/controls'
+    | '/dashboard'
+    | '/devices'
+    | '/history'
+    | '/patient'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/alerts' | '/dashboard'
-  id: '__root__' | '/' | '/alerts' | '/dashboard'
+  to:
+    | '/'
+    | '/ai-model'
+    | '/alerts'
+    | '/communication'
+    | '/controls'
+    | '/dashboard'
+    | '/devices'
+    | '/history'
+    | '/patient'
+    | '/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-model'
+    | '/alerts'
+    | '/communication'
+    | '/controls'
+    | '/dashboard'
+    | '/devices'
+    | '/history'
+    | '/patient'
+    | '/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiModelRoute: typeof AiModelRoute
   AlertsRoute: typeof AlertsRoute
+  CommunicationRoute: typeof CommunicationRoute
+  ControlsRoute: typeof ControlsRoute
   DashboardRoute: typeof DashboardRoute
+  DevicesRoute: typeof DevicesRoute
+  HistoryRoute: typeof HistoryRoute
+  PatientRoute: typeof PatientRoute
+  SettingsRoute: typeof SettingsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +169,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-model': {
+      id: '/ai-model'
+      path: '/ai-model'
+      fullPath: '/ai-model'
+      preLoaderRoute: typeof AiModelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/alerts': {
       id: '/alerts'
       path: '/alerts'
       fullPath: '/alerts'
       preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/communication': {
+      id: '/communication'
+      path: '/communication'
+      fullPath: '/communication'
+      preLoaderRoute: typeof CommunicationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/controls': {
+      id: '/controls'
+      path: '/controls'
+      fullPath: '/controls'
+      preLoaderRoute: typeof ControlsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -82,13 +204,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/devices': {
+      id: '/devices'
+      path: '/devices'
+      fullPath: '/devices'
+      preLoaderRoute: typeof DevicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/patient': {
+      id: '/patient'
+      path: '/patient'
+      fullPath: '/patient'
+      preLoaderRoute: typeof PatientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiModelRoute: AiModelRoute,
   AlertsRoute: AlertsRoute,
+  CommunicationRoute: CommunicationRoute,
+  ControlsRoute: ControlsRoute,
   DashboardRoute: DashboardRoute,
+  DevicesRoute: DevicesRoute,
+  HistoryRoute: HistoryRoute,
+  PatientRoute: PatientRoute,
+  SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

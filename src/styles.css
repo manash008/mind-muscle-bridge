@@ -255,3 +255,29 @@
   stroke-dasharray: 10 12;
   animation: nb-dash 3s linear infinite;
 }
+
+/* Accessibility preference: high contrast */
+.contrast-more {
+  --color-muted-foreground: var(--color-foreground);
+  --color-border: var(--color-foreground);
+}
+
+@keyframes nb-signal-flow {
+  0% {
+    opacity: 0.25;
+    transform: scaleY(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0.25;
+    transform: scaleY(0.3);
+  }
+}
+
+@utility signal-line {
+  transform-origin: top;
+  animation: nb-signal-flow 1.8s ease-in-out infinite;
+}
