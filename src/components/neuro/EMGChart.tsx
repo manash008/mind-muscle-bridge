@@ -134,8 +134,8 @@ export function MiniWaveform({ active }: { active: boolean }) {
 
   const points = Array.from({ length: 48 }, (_, i) => {
     const x = (i / 47) * 300;
-    const base = 24 + Math.sin((i + offset) / 2.2) * 4;
-    const spike = (i + offset) % 17 === 0 ? 14 : 0;
+    const base = 24 + Math.sin((i + effectiveOffset) / 2.2) * 4;
+    const spike = (i + effectiveOffset) % 17 === 0 ? 14 : 0;
     return `${x},${base - spike}`;
   }).join(" ");
 
