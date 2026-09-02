@@ -42,10 +42,10 @@ export interface Alert {
   timestamp: string;
   status: AlertStatus;
   label: string;
-  need?: string;
-  acknowledgedAt?: string;
-  resolvedAt?: string;
-  responseSeconds?: number;
+  need?: string | undefined;
+  acknowledgedAt?: string | undefined;
+  resolvedAt?: string | undefined;
+  responseSeconds?: number | undefined;
 }
 
 export interface Device {

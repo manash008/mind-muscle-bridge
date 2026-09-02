@@ -223,7 +223,7 @@ export async function getAlertHistory(): Promise<Alert[]> {
   return seeds.map((s, i) => ({
     ...s,
     id: newId("SEED"),
-    timestamp: new Date(base - HISTORY_SEED_MINUTES[i] * 60_000).toISOString(),
+    timestamp: new Date(base - (HISTORY_SEED_MINUTES[i] ?? 30) * 60_000).toISOString(),
   }));
 }
 
