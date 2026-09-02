@@ -121,28 +121,35 @@ export function EMGChart({ compact = false }: { compact?: boolean }) {
 /** Small inline waveform used inside the patient status card. */
 export function MiniWaveform({ active }: { active: boolean }) {
   const [offset, setOffset] = useState(0);
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    if (!active) return;
+    setMounted(true);
+  }, []);
+  useEffect(() => {
+    if (!active || !mounted) return;
     const id = setInterval(() => setOffset((o) => o + 1), 140);
     return () => clearInterval(id);
-  }, [active]);
+  }, [active, mounted]);
+  const effectiveOffset = mounted ? offset : 0;
 
   const points = Array.from({ length: 48 }, (_, i) => {
     const x = (i / 47) * 300;
-    const base = 24 + Math.sin((i + offset) / 2.2) * 4;
-    const spike = (i + offset) % 17 === 0 ? 14 : 0;
+    const base = 24 + Math.sin((i + effectiveOffset) / 2.2) * 4;
+    const spike = (i + effectiveOffset) % 17 === 0 ? 14 : 0;
     return `${x},${base - spike}`;
   }).join(" ");
 
   return (
     <svg viewBox="0 0 300 48" className="h-14 w-full" role="img" aria-label="Live EMG waveform">
-      <polyline
-        points={points}
-        fill="none"
-        stroke="var(--color-teal)"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
+      {mounted ? (
+        <polyline
+          points={points}
+          fill="none"
+          stroke="var(--color-teal)"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+      ) : null}
     </svg>
   );
 }
