@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as CommunicationRouteImport } from './routes/communication'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as PatientRouteImport } from './routes/patient'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,6 +36,11 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DevicesRoute = DevicesRouteImport.update({
+  id: '/devices',
+  path: '/devices',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PatientRoute = PatientRouteImport.update({
   id: '/patient',
   path: '/patient',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/alerts': typeof AlertsRoute
   '/communication': typeof CommunicationRoute
   '/dashboard': typeof DashboardRoute
+  '/devices': typeof DevicesRoute
   '/patient': typeof PatientRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/alerts': typeof AlertsRoute
   '/communication': typeof CommunicationRoute
   '/dashboard': typeof DashboardRoute
+  '/devices': typeof DevicesRoute
   '/patient': typeof PatientRoute
 }
 export interface FileRoutesById {
@@ -61,15 +69,24 @@ export interface FileRoutesById {
   '/alerts': typeof AlertsRoute
   '/communication': typeof CommunicationRoute
   '/dashboard': typeof DashboardRoute
+  '/devices': typeof DevicesRoute
   '/patient': typeof PatientRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/alerts' | '/communication' | '/dashboard' | '/patient'
+  fullPaths:
+    '/' | '/alerts' | '/communication' | '/dashboard' | '/devices' | '/patient'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/alerts' | '/communication' | '/dashboard' | '/patient'
+  to:
+    '/' | '/alerts' | '/communication' | '/dashboard' | '/devices' | '/patient'
   id:
-    '__root__' | '/' | '/alerts' | '/communication' | '/dashboard' | '/patient'
+    | '__root__'
+    | '/'
+    | '/alerts'
+    | '/communication'
+    | '/dashboard'
+    | '/devices'
+    | '/patient'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +94,7 @@ export interface RootRouteChildren {
   AlertsRoute: typeof AlertsRoute
   CommunicationRoute: typeof CommunicationRoute
   DashboardRoute: typeof DashboardRoute
+  DevicesRoute: typeof DevicesRoute
   PatientRoute: typeof PatientRoute
 }
 
@@ -110,6 +128,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/devices': {
+      id: '/devices'
+      path: '/devices'
+      fullPath: '/devices'
+      preLoaderRoute: typeof DevicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/patient': {
       id: '/patient'
       path: '/patient'
@@ -125,6 +150,7 @@ const rootRouteChildren: RootRouteChildren = {
   AlertsRoute: AlertsRoute,
   CommunicationRoute: CommunicationRoute,
   DashboardRoute: DashboardRoute,
+  DevicesRoute: DevicesRoute,
   PatientRoute: PatientRoute,
 }
 export const routeTree = rootRouteImport
