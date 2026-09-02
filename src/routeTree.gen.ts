@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AiModelRouteImport } from './routes/ai-model'
 import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as CommunicationRouteImport } from './routes/communication'
+import { Route as ControlsRouteImport } from './routes/controls'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as PatientRouteImport } from './routes/patient'
@@ -37,6 +38,11 @@ const CommunicationRoute = CommunicationRouteImport.update({
   path: '/communication',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ControlsRoute = ControlsRouteImport.update({
+  id: '/controls',
+  path: '/controls',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/ai-model': typeof AiModelRoute
   '/alerts': typeof AlertsRoute
   '/communication': typeof CommunicationRoute
+  '/controls': typeof ControlsRoute
   '/dashboard': typeof DashboardRoute
   '/devices': typeof DevicesRoute
   '/patient': typeof PatientRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/ai-model': typeof AiModelRoute
   '/alerts': typeof AlertsRoute
   '/communication': typeof CommunicationRoute
+  '/controls': typeof ControlsRoute
   '/dashboard': typeof DashboardRoute
   '/devices': typeof DevicesRoute
   '/patient': typeof PatientRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/ai-model': typeof AiModelRoute
   '/alerts': typeof AlertsRoute
   '/communication': typeof CommunicationRoute
+  '/controls': typeof ControlsRoute
   '/dashboard': typeof DashboardRoute
   '/devices': typeof DevicesRoute
   '/patient': typeof PatientRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/ai-model'
     | '/alerts'
     | '/communication'
+    | '/controls'
     | '/dashboard'
     | '/devices'
     | '/patient'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/ai-model'
     | '/alerts'
     | '/communication'
+    | '/controls'
     | '/dashboard'
     | '/devices'
     | '/patient'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/ai-model'
     | '/alerts'
     | '/communication'
+    | '/controls'
     | '/dashboard'
     | '/devices'
     | '/patient'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AiModelRoute: typeof AiModelRoute
   AlertsRoute: typeof AlertsRoute
   CommunicationRoute: typeof CommunicationRoute
+  ControlsRoute: typeof ControlsRoute
   DashboardRoute: typeof DashboardRoute
   DevicesRoute: typeof DevicesRoute
   PatientRoute: typeof PatientRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunicationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/controls': {
+      id: '/controls'
+      path: '/controls'
+      fullPath: '/controls'
+      preLoaderRoute: typeof ControlsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AiModelRoute: AiModelRoute,
   AlertsRoute: AlertsRoute,
   CommunicationRoute: CommunicationRoute,
+  ControlsRoute: ControlsRoute,
   DashboardRoute: DashboardRoute,
   DevicesRoute: DevicesRoute,
   PatientRoute: PatientRoute,
