@@ -121,11 +121,16 @@ export function EMGChart({ compact = false }: { compact?: boolean }) {
 /** Small inline waveform used inside the patient status card. */
 export function MiniWaveform({ active }: { active: boolean }) {
   const [offset, setOffset] = useState(0);
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    if (!active) return;
+    setMounted(true);
+  }, []);
+  useEffect(() => {
+    if (!active || !mounted) return;
     const id = setInterval(() => setOffset((o) => o + 1), 140);
     return () => clearInterval(id);
-  }, [active]);
+  }, [active, mounted]);
+  const effectiveOffset = mounted ? offset : 0;
 
   const points = Array.from({ length: 48 }, (_, i) => {
     const x = (i / 47) * 300;
