@@ -141,13 +141,15 @@ export function MiniWaveform({ active }: { active: boolean }) {
 
   return (
     <svg viewBox="0 0 300 48" className="h-14 w-full" role="img" aria-label="Live EMG waveform">
-      <polyline
-        points={points}
-        fill="none"
-        stroke="var(--color-teal)"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
+      {mounted ? (
+        <polyline
+          points={points}
+          fill="none"
+          stroke="var(--color-teal)"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+      ) : null}
     </svg>
   );
 }
