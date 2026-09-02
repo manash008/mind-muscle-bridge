@@ -16,6 +16,7 @@ import { Route as CommunicationRouteImport } from './routes/communication'
 import { Route as ControlsRouteImport } from './routes/controls'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DevicesRouteImport } from './routes/devices'
+import { Route as HistoryRouteImport } from './routes/history'
 import { Route as PatientRouteImport } from './routes/patient'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +54,11 @@ const DevicesRoute = DevicesRouteImport.update({
   path: '/devices',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PatientRoute = PatientRouteImport.update({
   id: '/patient',
   path: '/patient',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/controls': typeof ControlsRoute
   '/dashboard': typeof DashboardRoute
   '/devices': typeof DevicesRoute
+  '/history': typeof HistoryRoute
   '/patient': typeof PatientRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/controls': typeof ControlsRoute
   '/dashboard': typeof DashboardRoute
   '/devices': typeof DevicesRoute
+  '/history': typeof HistoryRoute
   '/patient': typeof PatientRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/controls': typeof ControlsRoute
   '/dashboard': typeof DashboardRoute
   '/devices': typeof DevicesRoute
+  '/history': typeof HistoryRoute
   '/patient': typeof PatientRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/controls'
     | '/dashboard'
     | '/devices'
+    | '/history'
     | '/patient'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/controls'
     | '/dashboard'
     | '/devices'
+    | '/history'
     | '/patient'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/controls'
     | '/dashboard'
     | '/devices'
+    | '/history'
     | '/patient'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   ControlsRoute: typeof ControlsRoute
   DashboardRoute: typeof DashboardRoute
   DevicesRoute: typeof DevicesRoute
+  HistoryRoute: typeof HistoryRoute
   PatientRoute: typeof PatientRoute
 }
 
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DevicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/patient': {
       id: '/patient'
       path: '/patient'
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   ControlsRoute: ControlsRoute,
   DashboardRoute: DashboardRoute,
   DevicesRoute: DevicesRoute,
+  HistoryRoute: HistoryRoute,
   PatientRoute: PatientRoute,
 }
 export const routeTree = rootRouteImport
